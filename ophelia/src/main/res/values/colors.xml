@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+
+    <color name="negative_button_default_text_color">#ff0000</color>
+    <color name="neutral_button_default_text_color">#000</color>
+
+    <color name="ea_spinner_main_background_color">#F5F5F5</color>
+
+    <color name="ea_spinner_button_color">#3F51B5</color>
+    <color name="ea_spinner_arrow_color">#FFF</color>
+
+    <color name="ea_spinner_selected_item_background_color">#82515151</color>
+
+    <color name="ea_spinner_separator_color">#ae939393</color>
+
+    <color name="ea_spinner_text_color_no_data">@color/black</color>
+    <color name="ea_spinner_text_color_row">@color/black</color>
+    <color name="ea_spinner_text_color_button">@color/white</color>
+
+    <color name="ea_spinner_checkbox_color">#3F51B5</color>
+
+    <color name="ea_spinner_progress_layout_background_color">#823f51b5</color>
+    <color name="ea_spinner_progress_background_color">#0b30ff</color>
+    <color name="ea_spinner_progress_foreground_color">#000474</color>
+
+    <color name="ea_progress_default_bg">#51000000</color>
+    <color name="ea_progress_default_fg">#002f8c</color>
+
+</resources>

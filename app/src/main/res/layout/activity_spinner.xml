@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpinnerActivity"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".SpinnerActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Single Local Custom Colors" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_single_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#335058"
+            android:padding="8dp"
+            android:textColor="#d21818"
+            app:drawableTint="#d21818" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Single Online" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_single_online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#050060"
+            android:padding="8dp"
+            android:textColor="#FFF"
+            app:drawableTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Multiple Local" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_multiple_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#050060"
+            android:padding="8dp"
+            android:textColor="#FFF"
+            app:drawableTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Multiple Online" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_multiple_online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#050060"
+            android:padding="8dp"
+            android:textColor="#FFF"
+            app:drawableTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Local No Data" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_no_data_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#050060"
+            android:padding="8dp"
+            android:textColor="#FFF"
+            app:drawableTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Online No Data" />
+
+        <com.ahmetkilic.ophelia.ea_spinner.EASpinner
+            android:id="@+id/eaSpinner_no_data_online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#050060"
+            android:padding="8dp"
+            android:textColor="#FFF"
+            app:drawableTint="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:eaindicator="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".NetworkingActivity">
+
+    <Button
+        android:id="@+id/btn_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Request Test" />
+
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Test" />
+
+    <Button
+        android:id="@+id/btn_download_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Test Manager" />
+
+    <Button
+        android:id="@+id/btn_download_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Test Custom" />
+
+    <Button
+        android:id="@+id/btn_delete_downloads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Downloaded Files" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
+    </ScrollView>
+
+</LinearLayout>

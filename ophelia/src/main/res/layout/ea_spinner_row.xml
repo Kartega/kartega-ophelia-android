@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row_ea_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/ea_spinner_row_padding_vertical"
+    android:paddingBottom="@dimen/ea_spinner_row_padding_vertical">
+
+    <LinearLayout
+        android:id="@+id/row_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/ea_spinner_row_padding_horizontal"
+        android:paddingEnd="@dimen/ea_spinner_row_padding_horizontal">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cb_row_ea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ea_spinner_row_checkbox_margin_horizontal"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            app:buttonTint="@color/ea_spinner_checkbox_color" />
+
+        <TextView
+            android:id="@+id/tv_row_ea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="@integer/ea_spinner_row_text_max_line"
+            android:textColor="@color/ea_spinner_text_color_row"
+            android:textSize="@dimen/ea_spinner_row_text_size" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/ea_separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ea_spinner_separator_height"
+        android:layout_marginStart="@dimen/ea_spinner_separator_margin_horizontal"
+        android:layout_marginTop="@dimen/ea_spinner_separator_margin_top"
+        android:layout_marginEnd="@dimen/ea_spinner_separator_margin_horizontal"
+        android:background="@color/ea_spinner_separator_color" />
+</LinearLayout>

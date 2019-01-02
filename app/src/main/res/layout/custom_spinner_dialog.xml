@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/ea_spinner_dialog_width"
+    android:layout_height="@dimen/ea_spinner_dialog_height">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9369b2d1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/ea_spinner_main_padding">
+
+        <SearchView
+            android:id="@+id/search_ea_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/ea_spinner_view_margin_top"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.ahmetkilic.ophelia.ea_recycler.EARecyclerView
+                    android:id="@+id/recycler_spinner_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/view_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <include layout="@layout/ea_spinner_view_no_data" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ea_spinner_view_margin_top"
+            android:layout_marginBottom="@dimen/ea_spinner_view_margin_top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_select_all"
+                style="@style/TextAppearance.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ea_spinner_button_margin_horizontal"
+                android:layout_marginEnd="@dimen/ea_spinner_button_margin_horizontal"
+                android:paddingStart="@dimen/ea_spinner_button_padding_horizontal"
+                android:paddingEnd="@dimen/ea_spinner_button_padding_horizontal"
+                android:text="@string/ea_spinner_select_all"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/btn_close"
+                style="@style/TextAppearance.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ea_spinner_button_margin_horizontal"
+                android:layout_marginEnd="@dimen/ea_spinner_button_margin_horizontal"
+                android:paddingStart="@dimen/ea_spinner_button_padding_horizontal"
+                android:paddingEnd="@dimen/ea_spinner_button_padding_horizontal"
+                android:text="@string/ea_spinner_ok"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/colorAccent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress_dialog"
+        android:layout_width="@dimen/ea_spinner_dialog_width"
+        android:layout_height="@dimen/ea_spinner_dialog_height"
+        android:background="@color/ea_spinner_progress_layout_background_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <com.ahmetkilic.ophelia.ea_progress.CrystalPreloader
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:crs_pl_bg_color="@color/ea_spinner_progress_background_color"
+            app:crs_pl_fg_color="@color/ea_spinner_progress_foreground_color"
+            app:crs_pl_size="very_small"
+            app:crs_pl_style="skype_balls" />
+
+    </RelativeLayout>
+
+</FrameLayout>

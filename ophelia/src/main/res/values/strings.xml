@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Ophelia</string>
+
+    <string name="day">Gün</string>
+    <string name="hour">Saat</string>
+    <string name="minute">Dakika</string>
+    <string name="second">Saniye</string>
+    <string name="field_can_not_be_empty">Bu alan boş bırakılamaz</string>
+    <string name="info">Bilgi</string>
+    <string name="cancel">İptal</string>
+    <string name="yes">Evet</string>
+    <string name="ok">Tamam</string>
+
+    <string name="ea_spinner_ok">Tamam</string>
+    <string name="ea_spinner_close">Kapat</string>
+    <string name="ea_spinner_clear">Temizle</string>
+    <string name="ea_spinner_select_all">Tümünü Seç</string>
+    <string name="ea_spinner_deselect_all">Tümünü Temizle</string>
+    <string name="ea_spinner_select">Seçiniz</string>
+    <string name="ea_spinner_no_data_str">Gösterilecek veri bulunamadı.</string>
+
+
+    <string name="warning_invalid_url">Geçersiz dosya bağlantısı</string>
+    <string name="warning_download_not_completed">İndirme işlemi tamamlanamadı!</string>
+    <string name="error_no_application_to_view">Dosyayı görüntüleyebilecek bir uygulama bulunamadı.</string>
+    <string name="chooser_title">Birlikte Aç</string>
+
+    <string name="error_unknown">Bilinmeyen bir hata oluştu.</string>
+    <string name="error_no_connection">Bağlantı hatası!</string>
+    <string name="error_server">Sunucu hatası!</string>
+    <string name="time_out_error">İşlem zaman aşımına uğradı. Sunucu yanıt vermiyor!</string>
+    <string name="auth_failure_error">İşlem yetkisi sunucu tarafından bulunamadı!</string>
+    <string name="error_network">Ağ hatası!</string>
+    <string name="error_parse">Dönüşüm hatası(Geçersiz XML ya da Json verisi)</string>
+    <string name="error_parse_json">Dönüşüm hatası(Geçersiz Json verisi)</string>
+    <string name="error_parse_json_on_success">Dönüşüm hatası(Json verisi)</string>
+    <string name="error_parse_xml">Dönüşüm hatası(Geçersiz XML verisi)</string>
+    <string name="error_malformed_url">Geçersiz sunucu isteği!</string>
+    <string name="error_out_of_memory">Sunucu yanıtı için yetersiz bellek!</string>
+    <string name="error_empty_body">Sunucu yanıtı boş!</string>
+    <string name="write_permission_required_to_download_file">Dosya indirme işleminin tamamlanabilmesi için uygulamaya yazma izni vermeniz gerekmekte.</string>
+    <string name="error_empty_response">Sunucu yanıtı boş.</string>
+    <string name="filer_not_found_exception">Dosya ya da klasör bulunamadı!</string>
+    <string name="error_cancelled">İşlem iptal edildi</string>
+</resources>
