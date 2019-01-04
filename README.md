@@ -4,7 +4,7 @@ A collection of Android libraries.
 
 ### Gradle
 ```gradle
- implementation 'com.ahmetkilic.ophelia:ophelia:1.0.0'
+ implementation 'com.ahmetkilic.ophelia:ophelia:1.0.1'
 ```
 
 > Examples of use are in sample [activities](https://github.com/Kartega/kartega-ophelia-android/tree/master/app/src/main/java/com/ahmetkilic/eaframework).
