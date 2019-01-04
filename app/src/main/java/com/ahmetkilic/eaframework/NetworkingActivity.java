@@ -40,7 +40,7 @@ public class NetworkingActivity extends EABaseActivity {
 
         tvResponse = findViewById(R.id.tv_response);
         findViewById(R.id.btn_upload).setOnClickListener(this);
-        findViewById(R.id.btn_get).setOnClickListener(this);
+        findViewById(R.id.btn_request).setOnClickListener(this);
         findViewById(R.id.btn_download_manager).setOnClickListener(this);
         findViewById(R.id.btn_download_custom).setOnClickListener(this);
         findViewById(R.id.btn_delete_downloads).setOnClickListener(this);

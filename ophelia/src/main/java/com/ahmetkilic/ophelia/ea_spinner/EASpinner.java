@@ -51,26 +51,34 @@ public class EASpinner<T> extends DrawableTintTextView implements
 
     private String defaultText;
 
+    private AttributeSet attrs;
+    private int defStyleAttr;
     private boolean noArrow;
 
     public EASpinner(Context context) {
         super(context);
+        this.attrs = null;
+        this.defStyleAttr = 0;
         init(context);
     }
 
     public EASpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.attrs = attrs;
+        this.defStyleAttr = 0;
         init(context);
-        checkDrawable(context, attrs, 0);
+        checkDrawable(context);
     }
 
     public EASpinner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.attrs = attrs;
+        this.defStyleAttr = defStyleAttr;
         init(context);
-        checkDrawable(context, attrs, defStyleAttr);
+        checkDrawable(context);
     }
 
-    private void checkDrawable(Context context, AttributeSet attrs, int defStyleAttr) {
+    private void checkDrawable(Context context) {
         Drawable arrow = getCompoundDrawables()[2];
         if (noArrow)
             setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -105,6 +113,7 @@ public class EASpinner<T> extends DrawableTintTextView implements
      */
     public void setNoArrow(boolean noArrow) {
         this.noArrow = noArrow;
+        checkDrawable(getContext());
     }
 
     /**
