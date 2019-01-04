@@ -3,6 +3,7 @@ package com.ahmetkilic.ophelia.ea_networking;
 import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -10,6 +11,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ public class EARequestBuilder {
     private Gson gson;
     private String url;
     private int method;
+    private String jsonParams;
     private HashMap<String, String> params;
     private HashMap<String, String> headers;
     private boolean shouldCache;
@@ -81,7 +85,7 @@ public class EARequestBuilder {
      * @param method method
      * @return builder
      */
-    public EARequestBuilder setMethod(int method) {
+    public EARequestBuilder setMethod(@Method int method) {
         this.method = method;
         return this;
     }
@@ -94,6 +98,18 @@ public class EARequestBuilder {
      */
     public EARequestBuilder setParams(HashMap<String, String> params) {
         this.params = params;
+        return this;
+    }
+
+    /**
+     * Set parameters for JsonRequest
+     * The request method must be a POST method.
+     *
+     * @param jsonParams json string
+     * @return builder
+     */
+    public EARequestBuilder setJsonParams(String jsonParams) {
+        this.jsonParams = jsonParams;
         return this;
     }
 
@@ -122,7 +138,7 @@ public class EARequestBuilder {
     /**
      * Add a single parameter
      *
-     * @param key parameter key
+     * @param key   parameter key
      * @param value parameter value
      * @return builder
      */
@@ -191,7 +207,7 @@ public class EARequestBuilder {
     /**
      * Add a single header to request
      *
-     * @param key header key
+     * @param key   header key
      * @param value header value
      * @return builder
      */
@@ -216,6 +232,7 @@ public class EARequestBuilder {
 
     /**
      * change should cache parameter of helper class
+     *
      * @param shouldCache enable cache if true
      * @return builder
      */
@@ -256,22 +273,37 @@ public class EARequestBuilder {
 
     /**
      * Execute the builder
-     *
      */
     public void fetch() {
+        startRequest(false);
+    }
+
+    /**
+     * Execute the builder for json request
+     */
+    public void fetchWithJsonRequest() {
+        startRequest(true);
+    }
+
+    /**
+     * Common request function
+     */
+    private void startRequest(boolean isJson) {
         if (headers != null)
             helper.getHeaders().putAll(headers);
         if (clearHeaders)
             helper.getHeaders().clear();
 
-        if (defaultRetryPolicy != null)
-            helper.setDefaultRetryPolicy(defaultRetryPolicy);
 
         if (isShouldCacheSet)
             helper.setShouldCache(shouldCache);
 
+        if (defaultRetryPolicy != null)
+            helper.setDefaultRetryPolicy(defaultRetryPolicy);
+
+
         if (responseClass != null && url != null && helper != null)
-            helper.requestEngine(url, params, method, new Response.Listener<String>() {
+            helper.requestEngine(isJson, url, params, jsonParams, method, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     String url2 = url;
@@ -308,7 +340,7 @@ public class EARequestBuilder {
      * @param response response string
      */
     private void checkError(String response) {
-        if (errorClass == String.class){
+        if (errorClass == String.class) {
             handleSuccess(response);
             return;
         }

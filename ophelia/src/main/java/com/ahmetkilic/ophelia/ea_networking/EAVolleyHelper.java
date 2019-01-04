@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.ahmetkilic.ophelia.R;
+import com.ahmetkilic.ophelia.ea_utilities.tools.StringUtils;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -14,15 +16,20 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,8 +89,10 @@ public class EAVolleyHelper {
      * @param listener      response listener
      * @param errorListener error listener
      */
-    void requestEngine(String URL,
-                       final HashMap<String, String> params,
+    void requestEngine(boolean isJsonRequest,
+                       String URL,
+                       HashMap<String, String> params,
+                       String jsonBody,
                        int method,
                        Response.Listener<String> listener,
                        Response.ErrorListener errorListener) {
@@ -91,10 +100,31 @@ public class EAVolleyHelper {
         if (params != null && SENT_PARAMS_LOG_ENABLED)
             doLog("Sent Params: " + params.toString());
 
-        if (URL_LOG_ENABLED)
-            doLog("URL: " + URL);
+        Request request;
+        if (isJsonRequest)
+            request = createJsonRequest(method, URL, jsonBody, listener, errorListener);
+        else
+            request = createStringRequest(method, URL, params, listener, errorListener);
 
-        StringRequest request = new StringRequest(method, URL, listener, errorListener) {
+        addCustomRequest(request);
+    }
+
+    /**
+     * Creqte a String request
+     *
+     * @param URL           request url
+     * @param params        request parameters
+     * @param method        request method
+     * @param listener      response listener
+     * @param errorListener error listener
+     * @return
+     */
+    private Request createStringRequest(int method,
+                                        String URL,
+                                        final HashMap<String, String> params,
+                                        Response.Listener<String> listener,
+                                        Response.ErrorListener errorListener) {
+        return new StringRequest(method, URL, listener, errorListener) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 if (params != null) {
@@ -117,15 +147,53 @@ public class EAVolleyHelper {
                 return super.getHeaders();
             }
         };
+    }
 
-        request.setTag(VOLLEY_REQUEST_TAG);
-        request.setRetryPolicy(defaultRetryPolicy);
-        request.setShouldCache(VOLLEY_SHOULD_CACHE);
-        try {
-            VolleySingleton.getInstance().addToRequestQueue(request);
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Creqte a String request
+     *
+     * @param URL           request url
+     * @param params        request parameters
+     * @param method        request method
+     * @param listener      response listener
+     * @param errorListener error listener
+     * @return
+     */
+    private Request createJsonRequest(int method,
+                                      String URL,
+                                      String params,
+                                      Response.Listener<String> listener,
+                                      Response.ErrorListener errorListener) {
+        if (params != null) {
+            if (SENT_PARAMS_LOG_ENABLED)
+                doLog("PARAMS:" + params);
         }
+
+        return new JsonRequest(method, URL, StringUtils.setEmptyStringIfNull(params), listener, errorListener) {
+
+            @Override
+            protected Response parseNetworkResponse(NetworkResponse response) {
+                String parsed;
+                try {
+                    parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                } catch (UnsupportedEncodingException e) {
+                    parsed = new String(response.data);
+                }
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                if (headers != null) {
+                    if (HEADERS_LOG_ENABLED)
+                        doLog("HEADERS: " + headers.toString());
+                    return headers;
+                }
+
+                return super.getHeaders();
+            }
+        };
     }
 
     /**
@@ -134,6 +202,14 @@ public class EAVolleyHelper {
      * @param request request to add
      */
     public void addCustomRequest(Request request) {
+        if (request == null) {
+            doLog("Request can not be NULL");
+            return;
+        }
+
+        if (URL_LOG_ENABLED)
+            doLog("URL: " + request.getUrl());
+
         request.setTag(VOLLEY_REQUEST_TAG);
         request.setRetryPolicy(defaultRetryPolicy);
         request.setShouldCache(VOLLEY_SHOULD_CACHE);

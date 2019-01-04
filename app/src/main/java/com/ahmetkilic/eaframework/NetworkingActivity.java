@@ -1,7 +1,6 @@
 package com.ahmetkilic.eaframework;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,8 +56,8 @@ public class NetworkingActivity extends EABaseActivity {
             return;
         disableClickTemporarily();
         switch (v.getId()) {
-            case R.id.btn_get:
-                getRequest();
+            case R.id.btn_request:
+                requestTest();
                 break;
             case R.id.btn_upload:
                 uploadTest();
@@ -76,7 +75,7 @@ public class NetworkingActivity extends EABaseActivity {
                     downloadTest(true);
                 break;
             case R.id.btn_delete_downloads:
-                FileUtils.deleteFileOrFolder(new File(FileUtils.getDownloadsPath() + File.separator + "MyCustomDownloadsFolder"));
+                FileUtils.deleteFileOrFolder(new File(FileUtils.getDownloadsPath() + File.separator + "test_file.jpg"));
                 break;
             default:
                 enableClick();
@@ -85,12 +84,36 @@ public class NetworkingActivity extends EABaseActivity {
         }
     }
 
-    private void getRequest() {
+    private void requestTest() {
+        //String url = "https://enqolrgw1pyfj.x.pipedream.net/sample/test";
+        String url = "https://jsonplaceholder.typicode.com/todos/1";
+/*
+        Car car = new Car("Audi");
+        Human human = new Human("Ahmet", car);
+        Gson gson = new Gson();
+
+        JSONArray array = new JSONArray();
+        try {
+            JSONObject obj1 = new JSONObject(gson.toJson(human));
+            JSONObject obj2 = new JSONObject(gson.toJson(human));
+            array.put(obj1);
+            array.put(obj2);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // String jsonBody = gson.toJson(human);
+        String jsonBody = array.toString();
+*/
         showProgress();
         EARequestBuilder requestBuilder = new EARequestBuilder();
         requestBuilder
-                .setUrl("https://jsonplaceholder.typicode.com/todos/1")
+                .setUrl(url)
                 .setHelper(helper)
+                .setShouldCache(false)
+                //.addParams("oKey","HELLO")
+                //.setMethod(Method.POST)
+                //.setJsonParams(jsonBody)
                 //.setResponseClass(String.class)
                 //.setErrorClass(String.class)
                 //.setMethod(Request.Method.GET)
@@ -98,6 +121,7 @@ public class NetworkingActivity extends EABaseActivity {
                 //.setParams(...)
                 //.setShouldCache(false)
                 //.setTimeOutMillis(15000)
+                //.setListResponseListener(...) // for List of items
                 .setObjectResponseListener(new EAObjectResponseListener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -189,14 +213,14 @@ public class NetworkingActivity extends EABaseActivity {
 
                     @Override
                     public void onDownloadComplete(String filePath) {
-                        new Handler().postDelayed(() -> runOnUiThread(() -> {
+                        runOnUiThread(() -> {
                             isDownloadingCustom = false;
                             isDownloadingManager = false;
                             ((Button) findViewById(R.id.btn_download_custom)).setText("Download Test Custom");
                             ((Button) findViewById(R.id.btn_download_manager)).setText("Download Test Manager");
-                            ((TextView)findViewById(R.id.tv_response)).setText(filePath);
+                            ((TextView) findViewById(R.id.tv_response)).setText(filePath);
                             onFileClicked(filePath, null);
-                        }),100);
+                        });
                     }
 
                     @Override

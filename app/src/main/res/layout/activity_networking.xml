@@ -10,10 +10,10 @@
     tools:context=".NetworkingActivity">
 
     <Button
-        android:id="@+id/btn_get"
+        android:id="@+id/btn_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Request Test" />
+        android:text="Request Test" />
 
     <Button
         android:id="@+id/btn_upload"
