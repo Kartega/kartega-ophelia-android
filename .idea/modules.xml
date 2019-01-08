@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ophelia.iml" filepath="$PROJECT_DIR$/ophelia.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ophelia/ophelia-ophelia.iml" filepath="$PROJECT_DIR$/ophelia/ophelia-ophelia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mOphelia.iml" filepath="$PROJECT_DIR$/mOphelia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ophelia/ophelia.iml" filepath="$PROJECT_DIR$/ophelia/ophelia.iml" />
     </modules>
   </component>
 </project>
