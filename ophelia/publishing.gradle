@@ -1,9 +1,8 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-if (!project.ext.has('GROUP') || !project.ext.has('ARTIFACT') || !project.ext.has('VERSION')) {
-    throw new MissingPropertyException("Extra properties['GROUP', 'ARTIFACT', 'VERSION'] are required.")
-}
+group publishedGroupId
+version libraryVersion
 
 boolean isAndroidModule = false
 boolean isJavaModule = false
@@ -64,7 +63,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 def aarArtifact = null
 if (isAndroidModule) {
     if (project.ext.has('AAR')) {
-        aarArtifact = project.ext.AAR
+        aarArtifact = AAR
     } else {
         project.afterEvaluate {
             def bundleAarTask = project.tasks.findByPath('bundleRelease')
@@ -86,13 +85,37 @@ def synchronized verifyDependency(Dependency it) {
             it.version != null && it.version != 'unspecified'
 }
 
+def pomConfig = {
+    licenses {
+        license {
+            name licenseName
+            url licenseUrl
+        }
+    }
+    developers {
+        developer {
+            id developerId
+            name developerName
+            email developerEmail
+        }
+    }
+    scm {
+        connection gitUrl
+        developerConnection gitUrl
+        url siteUrl
+
+    }
+}
+
 project.afterEvaluate {
     publishing {
         publications {
             Bintray(MavenPublication) {
-                groupId project.ext.GROUP
-                artifactId project.ext.ARTIFACT
-                version project.ext.VERSION
+
+                groupId publishedGroupId
+                group publishedGroupId
+                artifactId artifact
+                version libraryVersion
 
                 artifact sourcesJar
                 artifact javadocJar
@@ -111,6 +134,8 @@ project.afterEvaluate {
 
                     if (isAndroidModule) {
                         withXml {
+                            def root = asNode()
+
                             def dependenciesNode = asNode().appendNode('dependencies')
                             configurations.compile.dependencies.each {
                                 if (verifyDependency(it)) {
@@ -136,6 +161,8 @@ project.afterEvaluate {
                                     dependencyNode.appendNode('version', it.version)
                                 }
                             }
+
+                            root.children().last() + pomConfig
                         }
                     }
                 }
@@ -151,23 +178,25 @@ project.afterEvaluate {
         user = properties.containsKey('BINTRAY_USER') ? properties.get('BINTRAY_USER') : ""
         key = properties.containsKey('BINTRAY_API_KEY') ? properties.get('BINTRAY_API_KEY') : ""
         publications = ['Bintray']
-        publish = project.ext.has('PUBLISH') ? project.ext.PUBLISH : true
-        override = project.ext.has('OVERRIDE') ? project.ext.OVERRIDE : false
-        dryRun = project.ext.has('DRYRUN') ? project.ext.DRYRUN : false
+        publish = true
         pkg {
-            repo = project.ext.has('BINTRAY_REPO') ? project.ext.BINTRAY_REPO : 'maven'
-            name = project.ext.has('BINTRAY_NAME') ? project.ext.BINTRAY_NAME : project.ext.ARTIFACT
-            licenses = project.ext.has('LICENSES') ? project.ext.LICENSES : ['Apache-2.0']
-            vcsUrl = project.ext.has('VCS_URL') ? project.ext.VCS_URL : ''
+            repo = bintrayRepo
+            name = bintrayName
+            licenses = allLicenses
+            vcsUrl = gitUrl
+            desc = libraryDescription
 
-            if (project.ext.has('USER_ORG')) {
-                userOrg = project.ext.USER_ORG
-            }
+            publish = true
             publicDownloadNumbers = true
-
             version {
-                name = project.ext.VERSION
-                vcsTag = project.ext.VERSION
+                name = libraryVersion
+                vcsTag = libraryVersion
+                desc = libraryDescription
+                gpg {
+                    sign = true //Determines whether to GPG sign the files. The default is false
+                    passphrase = properties.getProperty("bintray.gpg.password")
+                    //Optional. The passphrase for GPG signing'
+                }
             }
         }
     }
