@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,6 +116,22 @@ public class ViewTools {
         removeView(currentView);
         removeView(newView);
         parent.addView(newView, index);
+    }
+
+    public static Drawable drawableColorChange(Context context, int icon, int color) {
+        Drawable drawable;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            drawable = context.getDrawable(icon);
+        } else {
+            drawable = context.getResources().getDrawable(icon);
+        }
+
+        if (drawable != null) {
+            drawable.setColorFilter(ContextCompat.getColor(context, color), PorterDuff.Mode.SRC_IN);
+        }
+
+        return drawable;
     }
 
     /**

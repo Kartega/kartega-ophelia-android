@@ -9,6 +9,7 @@
     <string name="info">Bilgi</string>
     <string name="cancel">İptal</string>
     <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
     <string name="ok">Tamam</string>
 
     <string name="ea_spinner_ok">Tamam</string>
@@ -42,4 +43,9 @@
     <string name="error_empty_response">Sunucu yanıtı boş.</string>
     <string name="filer_not_found_exception">Dosya ya da klasör bulunamadı!</string>
     <string name="error_cancelled">İşlem iptal edildi</string>
+
+    <string name="dialog_ok_button">Tamam</string>
+    <string name="dialog_yes_button">Evet</string>
+    <string name="dialog_no_button">Hayır</string>
+    <string name="dialog_neutral_button">Tamam</string>
 </resources>

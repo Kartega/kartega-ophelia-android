@@ -28,6 +28,7 @@
                 android:resource="@xml/provider_paths"
                 tools:replace="android:resource" />
         </provider>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,6 +50,9 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NetworkingActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DialogActivity"
             android:parentActivityName=".MainActivity" />
     </application>
 

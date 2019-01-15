@@ -20,8 +20,8 @@ public class MainActivity extends EABaseActivity {
         findViewById(R.id.btn_utilities).setOnClickListener(this);
         findViewById(R.id.btn_slider).setOnClickListener(this);
         findViewById(R.id.btn_networking).setOnClickListener(this);
+        findViewById(R.id.btn_dialog).setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -52,6 +52,9 @@ public class MainActivity extends EABaseActivity {
                 break;
             case R.id.btn_networking:
                 startActivity(new Intent(this, NetworkingActivity.class));
+                break;
+            case R.id.btn_dialog:
+                startActivity(new Intent(this, DialogActivity.class));
                 break;
             default:
                 enableClick();

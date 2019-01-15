@@ -33,4 +33,16 @@
     <color name="ea_progress_default_bg">#51000000</color>
     <color name="ea_progress_default_fg">#002f8c</color>
 
+    <color name="ea_dialog_background_color_success">#00b576</color>
+    <color name="ea_dialog_background_color_error">#C1272D</color>
+    <color name="ea_dialog_background_color_warning">#f2c304</color>
+    <color name="ea_dialog_background_color_info">#2866BF</color>
+    <color name="ea_dialog_background_color_notice">#737373</color>
+
+    <color name="ea_dialog_button_negative_background_color">@color/ea_dialog_background_color_error</color>
+    <color name="ea_dialog_button_negative_text_color">@color/white</color>
+    <color name="ea_dialog_button_positive_background_color">@color/ea_dialog_background_color_success</color>
+    <color name="ea_dialog_button_positive_text_color">@color/white</color>
+    <color name="ea_dialog_button_neutral_background_color">@color/ea_dialog_background_color_info</color>
+    <color name="ea_dialog_button_neutral_text_color">@color/white</color>
 </resources>
