@@ -48,7 +48,7 @@ A collection of Android libraries.
   * Calculator
   * Shared preferences helper
   * Device informations utils
-  - **EADialogs**
+- **EADialogs**
   * Ready dialog styles
   * Ready button styles
   * Customizations
