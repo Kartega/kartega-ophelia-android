@@ -4,7 +4,7 @@ A collection of Android libraries.
 
 ### Gradle
 ```gradle
- implementation 'com.ahmetkilic.ophelia:ophelia:1.0.2'
+ implementation 'com.ahmetkilic.ophelia:ophelia:1.0.3'
 ```
 
 > Examples of use are in sample [activities](https://github.com/Kartega/kartega-ophelia-android/tree/master/app/src/main/java/com/ahmetkilic/eaframework).
@@ -48,3 +48,16 @@ A collection of Android libraries.
   * Calculator
   * Shared preferences helper
   * Device informations utils
+- **EADialogs**
+  * Ready dialog styles
+  * Ready button styles
+  * Customizations
+
+```
+Dialogs inspired from ;
+- https://github.com/blennerSilva/AwesomeDialog
+
+Progress interpolators from;
+- https://github.com/syedowaisali/crystal-preloaders
+
+```
