@@ -52,3 +52,12 @@ A collection of Android libraries.
   * Ready dialog styles
   * Ready button styles
   * Customizations
+
+```
+Dialogs inspired from ;
+- https://github.com/blennerSilva/AwesomeDialog
+
+Progress interpolators from;
+- https://github.com/syedowaisali/crystal-preloaders
+
+```
